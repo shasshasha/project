@@ -1,0 +1,75 @@
+package asdf;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class sdfgh {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Random random = new Random();
+		int rad[] = new int[3];
+		int ans[] = new int[3];
+		int count = 3;
+		int strike = 0;
+		int ball = 0;
+		int out = 0;
+		System.out.println("안녕하세요.숫자야구게임에 오신것을 환영합니다!");
+		System.out.println("숫자,위치 다 맞으면 스트라이크");
+		System.out.println("숫자는 맞지만 위치가 틀리면 볼");
+		System.out.println("숫자,위치 다 틀리면 아웃");
+		for (int i = 0; i < 3; i++) {
+			rad[i] = random.nextInt(9);
+			for (int j = 0; j < i; j++) {
+				if (rad[i] == rad[j]) {// 중복제거
+					rad[i] = random.nextInt(9);
+					i--;
+				}
+			}
+		}
+		for (int i = 0; i < 3; i++) {
+			System.out.println(rad[i]);
+		}
+		while (count > 0) {
+		strike = 0;
+		ball = 0;
+		out = 0;
+			for (int i = 0; i < 3; i++) {
+				System.out.println("0~9까지의 숫자를 입력해주세요.");
+				ans[i] = scan.nextInt();
+
+			}
+			for (int i = 0; i < 3; i++) {
+				if (rad[i] == ans[i]) {
+					strike++;
+
+				}
+				else if (rad[i] != ans[i]) {/*
+												 * 스트라이크가 아니라면 for문을 돌리고
+												 * rad[0]와ans[1,2 등]과 비교하여서 숫자가
+												 * 맞으면 넣는다.
+												 */
+					for (int j = 0; j < ans.length; j++) {
+						if (rad[i] == ans[j]) {
+							ball++;
+						} 
+					}
+				}
+				
+			}
+			out=3-(strike+ball);
+			System.out.println(strike + "스트라이크" + ball + "볼" + out + "아웃입니다.");
+			 count--;
+			if (count > 0 && strike < 3) {
+				System.out.println("기회가" + count + "번 남으셨습니다.");
+			}
+			if(strike==3) {
+				System.out.println("승리하셨습니다.");
+				break;
+			}
+			if (count == 0) {
+				System.out.println("종료합니다.");
+				break;
+				}
+			}
+		}
+	}
