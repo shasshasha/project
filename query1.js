@@ -27,9 +27,12 @@ $(document).ready(function () {
     });
 
         $("#count").text("게임을 시작할려면 시작 버튼을 눌러주세요.");
+       
         
         $("#play").on("click",function(){
             
+            
+            $(".ans").attr("readonly",false).attr("disabled",false);  
             $("#play").val("재시작");
             $("#count").text("기회 6번 남았습니다.");
             $("#information").text("숫자를 입력해주세요.");
@@ -52,7 +55,7 @@ $(document).ready(function () {
             console.log(computer[i]);
             }
             
-            $("#click").on("click",function(){
+             $('#click').unbind("click").bind("click", function (){
                
                 var one = $('#one').val();
                 var two = $('#two').val();
@@ -99,13 +102,14 @@ $(document).ready(function () {
                      game--;
                     if(strike!=3&&game==0){
                          $("#information").prepend("졌습니다.<br>");
-                        $(".ans").attr("readonly",true).attr("disabled",false);  
+                        $(".ans").attr("readonly",true).attr("disabled",false); 
+                        $("#click").off("click");
                         
                     }
                     if(game!=0&&strike==3) {
                         $("#information").prepend("승리하셨습니다.<br>");
                         $(".ans").attr("readonly",true).attr("disabled",false);
-
+                        $("#click").off("click");
                     }
                 }
                
